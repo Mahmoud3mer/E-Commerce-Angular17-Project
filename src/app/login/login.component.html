@@ -1,0 +1,52 @@
+
+<div class="container my-5">
+    <form [formGroup]="logInForm" (ngSubmit)="logIn()" class="mx-auto w-75 border rounded border-2 border-primary p-4">
+        <h3 class="mb-3 text-primary">Log In: </h3>
+
+        @if (errorMesage) {
+            <p class="bg-danger p-2">{{errorMesage}}</p>
+        }
+
+        <div class="mb-3 form-group">
+            <label for="email" class="form-label text-primary">Email address</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            
+            @if (logInForm.get('email').errors && logInForm.get('email').touched) {
+                <div class="alert alert-danger errors">
+                    @if (logInForm.get('email')?.errors['required']) {
+                        <p class="mb-0">Email Required</p>
+                    }@else if (logInForm.get('email')?.errors['email']) {
+                        <p class="mb-0">Email Invalid</p>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label text-primary">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+
+            @if (logInForm.get('password').errors && logInForm.get('password').touched) {
+                <div class="alert alert-danger errors">
+                    @if (logInForm.get('password')?.errors['required']) {
+                        <p class="mb-0">Password Required</p>
+                    }@else if (logInForm.get('password')?.errors['pattern']) {
+                        <p class="mb-0">Password Invalid</p>
+                    }
+                </div>
+            }
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary ms-auto d-block mt-5" [disabled]="isLoading">
+            @if(isLoading){
+                <i class="fa fa-spinner fa-spn"></i>
+            }@else {
+                Login
+            }
+            
+        </button>
+    </form>
+</div>
+
+

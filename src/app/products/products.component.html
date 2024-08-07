@@ -1,0 +1,35 @@
+<div class="container my-5">
+    @if (products.length == 0) {
+
+        <app-loader></app-loader>
+
+    }@else {
+        <div class="row">
+            <h1 #show>Jewelery</h1>
+            @for (product of products; track $index) {
+                @if (product.category == 'jewelery') {
+                    <div class="col-3">
+                        <app-product-card [data]="product"></app-product-card>
+                    </div>
+                }
+            }
+        </div>
+    
+        <div class="row">
+            <h1 #show>All Products</h1>
+            @defer (on interaction(show)) {
+                @for (product of products; track $index) {
+                    <div class="col-3">
+                        <app-product-card [data]="product"></app-product-card>
+                    </div>
+                }
+            }
+            @loading (after 1s; minimum 2s) {
+                <h1>Loading Products</h1>
+            }
+            <!-- @placeholder {
+                <h1>All Products</h1>
+            } -->
+        </div>
+    }
+</div>

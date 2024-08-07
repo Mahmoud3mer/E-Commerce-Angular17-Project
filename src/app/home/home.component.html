@@ -1,0 +1,78 @@
+<div class="container my-5">
+    <div class="row">
+        <h3>Categories</h3>
+        <app-category-slider></app-category-slider>
+    </div>
+    <div class="row my-4">
+        <h3>Brands</h3>
+        <app-brand-slider></app-brand-slider>
+    </div>
+    <div class="row my-4">
+        <h3>Static banner</h3>
+        <app-banner></app-banner>
+    </div>
+    <!-- sidebar -->
+    <div class="row my-4">
+        <h3>Side bar</h3>
+        <div class=" d-flex justify-content-around flex-wrap p-3 bg-info rounded-4">
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3">
+                <label for="sort">Sort by:</label>
+                <select id="sort" class="form-control" (change)="filtrationBySelection($event)">
+                    <option value="All">All</option>
+                    <option value="priceAsc">Price: Low to High</option>
+                    <option value="priceDesc">Price: High to Low</option>
+                    <option value="nameAsc">Name: A to Z</option>
+                    <option value="nameDesc">Name: Z to A</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3">
+                <label for="filterByName">Filter by name:</label>
+                <input type="text" (keyup)="filtrationByName($event)" class="form-control" id="filterByName"
+                    aria-describedby="emailHelp">
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3">
+                <label for="rangePrice" class="form-label">Range price: </label>
+                <span class="px-3 py-2 mx-3 bg-warning rounded-3">{{rangeValue}}$</span>
+                <input type="range" class="form-range" [min]="minPrice" [max]="maxPrice" [(ngModel)]="rangeValue"
+                    (change)="filtrationByPrice($event)" id="rangePrice">
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <h3>Products</h3>
+        @if (products.length == 0) {
+        <app-loader></app-loader>
+        }@else {
+        @for (product of sortedProducts; track $index) {
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <app-product-card [data]="product"></app-product-card>
+        </div>
+        }
+        }
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="row">
+        <div class="mx-auto">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    @for (pageNumber of arrayNumberPages; track $index) {
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link">{{pageNumber}}</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+</div>

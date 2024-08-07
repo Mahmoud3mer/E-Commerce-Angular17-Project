@@ -1,0 +1,11 @@
+<div class="card mb-5 col-3" style="width: 18rem;">
+    <img [src]="data.image" class="card-img-top" alt="..." (click)="goToProductDetails()">
+    <div class="card-body text-center position-relative">
+        <h5 class="card-title">{{ data.title }}</h5>
+        <p class="card-text">Price: {{ data.price }}$</p>
+    </div>
+    <div class="card-footer text-center fs-3">
+        <i class="fa-solid fa-heart icon" title="favorite product"></i>
+    </div>
+</div>
+

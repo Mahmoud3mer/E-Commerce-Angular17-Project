@@ -1,0 +1,14 @@
+<div class="container my-5">
+    <div class="row border rounded-3 p-4">
+        <div class="col-6">
+            <img class="w-100" [src]="product.image" alt="">
+        </div>
+        <div class="col-6 d-flex flex-column justify-content-around align-items-center">
+            <h2 class="mx-auto w-75">{{product.title}}</h2>
+            <h4>Price: {{product.price}}$</h4>
+            <h4>Category: {{product.category}}</h4>
+            <p class="w-75">{{product.description}}</p>
+            <h3>Raiting: {{product.rating.rate}}</h3> 
+        </div>
+    </div>
+</div>
