@@ -1,42 +1,54 @@
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-info">
-        <div class="container-fluid">
-            <div>
+        <div class="container">
+            <div class="">
                 <a class="navbar-brand" href="#"><img [src] = "logoImgUrl" alt="" [style.width]= "'40px'"></a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav  ms-auto mb-2">
-                    @if (isLoggedIn === true) {
-                        <li class="nav-item">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- @if (isLoggedIn === true) { -->
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center">
                             <a class="nav-link active" aria-current="page" routerLink='home' routerLinkActive="bg-primary">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink='about' routerLinkActive="bg-primary">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink='contact' routerLinkActive="bg-primary">Contact</a>
-                        </li>
-                        <li class="nav-item">
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center">
                             <a class="nav-link" routerLink='products' routerLinkActive="bg-primary">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink='settings' routerLinkActive="bg-primary">Settings</a>
+
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center">
+                          <a class="nav-link" >WishList </a>
+                          <i  class="fa-regular fa-heart"></i>
+                          <div class="sc-ce86c11a-3 hxgeim"></div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center" >
+                          <a class="nav-link" routerLink="cart" routerLinkActive="bg-primary">Cart</a>
+                          <span ></span>
+                          <i class="fa-solid fa-cart-shopping fs-4" ></i>
+                        </li>
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center">
+                          <a class="nav-link" routerLink='settings' routerLinkActive="bg-primary">Settings</a>
+                          <i class="fa-solid fa-gear"></i>
+                        </li>
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center">
                             <button class="nav-link" (click)="logOut()">Logout</button>
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </li>
-                    }@else {
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink='register' routerLinkActive="bg-primary">Register</a>
+                   <!--  }@else { -->
+
+
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center signup-disappear" routerLink='register' routerLinkActive="bg-primary">
+                          <a class="nav-link"> Sign Up </a>
+                          <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink='login' routerLinkActive="bg-primary">LogIn</a>
+
+                        <li class="nav-item fs-5 pe-2 d-flex align-items-center login-disappear" routerLink='login' routerLinkActive="bg-primary">
+                          <a class="nav-link"> Login </a>
+                          <i class="fa-solid fa-right-to-bracket"></i>
                         </li>
-                    }
+                   <!--  } -->
                 </ul>
             </div>
         </div>

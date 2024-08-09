@@ -20,11 +20,11 @@ import { Subscription } from 'rxjs';
 export class ProductsComponent implements OnInit, OnDestroy{
 
   products: ProductIntrface[] = [];
-
+  cartProducts:any[]=[]
   x: Subscription = new Subscription();
 
   constructor(private _productsService: ProductsService){
-    
+
   }
 
   //without using constructor
@@ -52,5 +52,22 @@ ngOnInit(): void {
 
   ngOnDestroy(): void {
     this.x.unsubscribe()
+  }
+
+  addToCart(event:any){
+    if("cart" in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem("cart")!)
+      let exist = this.cartProducts.find(item => item.item.id == event.item.id)
+      if(exist) {
+        alert("Product is already in your cart")
+      }else {
+        this.cartProducts.push(event)
+        localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+      }
+    } else {
+      this.cartProducts.push(event)
+      localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+    }
+
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     RouterOutlet,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CartComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

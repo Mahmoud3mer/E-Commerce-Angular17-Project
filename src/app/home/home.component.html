@@ -47,7 +47,7 @@
         }@else {
         @for (product of sortedProducts; track $index) {
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <app-product-card [data]="product"></app-product-card>
+            <app-product-card [data]="product" (item)="addToCart($event)"></app-product-card>
         </div>
         }
         }
@@ -74,5 +74,5 @@
             </nav>
         </div>
     </div>
-    
+
 </div>

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
-
+import { CartComponent } from '../cart/cart.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -13,7 +13,8 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
   logoImgUrl: string = '../../assets/Images/images.jpeg';
-
+  /* cartProducts:any[]=[]; */
+  cartProducts:any[]=[];
   isLoggedIn: boolean = false;
   isBrowser: boolean = false;
   constructor(private _authService: AuthService , @Inject(PLATFORM_ID) platformId: Object ){
@@ -44,5 +45,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     // console.log(localStorage.getItem('token'));
   }
+
+
 
 }

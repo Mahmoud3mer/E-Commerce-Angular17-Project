@@ -4,25 +4,29 @@
         <app-loader></app-loader>
 
     }@else {
-        <div class="row">
+        <div class="">
             <h1 #show>Jewelery</h1>
+            <div class="d-flex gy-5 flex-wrap justify-content-center">
             @for (product of products; track $index) {
                 @if (product.category == 'jewelery') {
-                    <div class="col-3">
-                        <app-product-card [data]="product"></app-product-card>
+                    <div class="">
+                        <app-product-card [data]="product" (item)="addToCart($event) "></app-product-card>
                     </div>
                 }
             }
+          </div>
         </div>
-    
-        <div class="row">
+
+        <div class="">
             <h1 #show>All Products</h1>
             @defer (on interaction(show)) {
+              <div class="d-flex gy-5 flex-wrap justify-content-center">
                 @for (product of products; track $index) {
-                    <div class="col-3">
-                        <app-product-card [data]="product"></app-product-card>
+                    <div class="">
+                        <app-product-card [data]="product" (item)="addToCart($event)" ></app-product-card>
                     </div>
                 }
+              </div>
             }
             @loading (after 1s; minimum 2s) {
                 <h1>Loading Products</h1>

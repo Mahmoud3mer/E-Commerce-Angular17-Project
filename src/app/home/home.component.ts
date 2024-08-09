@@ -30,6 +30,8 @@ export class HomeComponent implements DoCheck{
 
   inputNameProdut: string = '';
 
+  cartProducts:any[]=[]
+
   minPrice: number = 0;
   maxPrice: number = 1000;
   rangeValue: number = 0
@@ -45,7 +47,7 @@ export class HomeComponent implements DoCheck{
       },
       complete:() => {
         console.log("Completed");
-        
+
       }
     })
   }
@@ -86,7 +88,7 @@ export class HomeComponent implements DoCheck{
     }else{
       this.filterByName(name);
     }
-    
+
     console.log(this.sortedProducts)
   }
 
@@ -115,5 +117,22 @@ export class HomeComponent implements DoCheck{
     this.numberPages = Math.ceil(this.products.length / this.itemsPerPage);
     this.arrayNumberPages = Array(this.numberPages).fill(0).map((x,index) => index + 1);
     console.log(this.arrayNumberPages,this.numberPages,this.products.length)
+  }
+
+  addToCart(event:any){
+    if("cart" in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem("cart")!)
+      let exist = this.cartProducts.find(item => item.item.id == event.item.id)
+      if(exist) {
+        alert("Product is already in your cart")
+      }else {
+        this.cartProducts.push(event)
+        localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+      }
+    } else {
+      this.cartProducts.push(event)
+      localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+    }
+
   }
 }
