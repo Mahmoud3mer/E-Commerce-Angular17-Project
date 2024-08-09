@@ -1,0 +1,10 @@
+.numCart{
+  background-color: brown;
+  width: 20px;
+  color: aliceblue;
+  position: absolute;
+  text-align: center;
+  border-radius: 20px;
+  font-size: medium;
+  top: 3px;
+}

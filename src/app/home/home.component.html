@@ -40,16 +40,18 @@
         </div>
     </div>
 
-    <div class="row my-4">
+    <div class="container my-5">
         <h3>Products</h3>
         @if (products.length == 0) {
         <app-loader></app-loader>
         }@else {
+          <div class="d-flex flex-wrap justify-content-center">
         @for (product of sortedProducts; track $index) {
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
             <app-product-card [data]="product" (item)="addToCart($event)"></app-product-card>
-        </div>
+
         }
+      </div>
         }
 
     </div>

@@ -17,16 +17,18 @@
           </div>
         </div>
 
-        <div class="">
+        <div class="container my-5">
             <h1 #show>All Products</h1>
             @defer (on interaction(show)) {
-              <div class="d-flex gy-5 flex-wrap justify-content-center">
+
+              <div class="d-flex flex-wrap justify-content-center">
                 @for (product of products; track $index) {
-                    <div class="">
+
                         <app-product-card [data]="product" (item)="addToCart($event)" ></app-product-card>
-                    </div>
+
                 }
               </div>
+
             }
             @loading (after 1s; minimum 2s) {
                 <h1>Loading Products</h1>
