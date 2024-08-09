@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { ProductIntrface } from '../product-intrface';
 import { ProductCardComponent } from '../product-card/product-card.component';
@@ -22,7 +22,6 @@ export class ProductsComponent implements OnInit, OnDestroy{
   products: ProductIntrface[] = [];
   cartProducts:any[]=[]
   x: Subscription = new Subscription();
-
   constructor(private _productsService: ProductsService){
 
   }
@@ -68,6 +67,6 @@ ngOnInit(): void {
       this.cartProducts.push(event)
       localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
     }
-
   }
+
 }

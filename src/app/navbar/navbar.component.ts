@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   isBrowser: boolean = false;
   cartItems=0;
 
+
   constructor(private _authService: AuthService , @Inject(PLATFORM_ID) platformId: Object ){
 
     this.isBrowser = isPlatformBrowser(platformId);
@@ -39,22 +40,29 @@ export class NavbarComponent implements OnInit {
       }
       console.log(this.isLoggedIn)
     })
-    let cartData = localStorage.getItem("cart");
-    if(cartData){
-      this.cartItems=JSON.parse(cartData).length
-    }
-  }
 
+
+  }
 
   logOut(){
     this._authService.logOut()
   }
 
+
   ngOnInit(): void {
     // console.log(localStorage.getItem('token'));
 
+
+
   }
 
-
+/* Add Cart Number */
+GetCartItemCount(){
+  let cartData = localStorage.getItem("cart");
+  if(cartData){
+  return this.cartItems=JSON.parse(cartData).length
+}
+}
+/* Add Cart Number */
 
 }
