@@ -7,69 +7,62 @@ import { CartComponent } from '../cart/cart.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink ,RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
   logoImgUrl: string = '../../assets/Images/images.jpeg';
   /* cartProducts:any[]=[]; */
-  cartProducts:any[]=[];
+  cartProducts: any[] = [];
   isLoggedIn: boolean = false;
   isBrowser: boolean = false;
-  cartItems=0;
+  cartItems = 0;
 
-
-  constructor(private _authService: AuthService , @Inject(PLATFORM_ID) platformId: Object ){
-
+  constructor(
+    private _authService: AuthService,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
 
-    _authService.LoggedInUser.subscribe(res => {
-      console.log(res, "from nav bar")
+    _authService.LoggedInUser.subscribe((res) => {
+      // console.log(res, "from nav bar")
       if (res) {
-        this.isLoggedIn = res? true: false;
-        console.log(this.isLoggedIn, "from nav bar")
-      }else if(this.isBrowser){
+        this.isLoggedIn = res ? true : false;
+        // console.log(this.isLoggedIn, "from nav bar")
+      } else if (this.isBrowser) {
         if (localStorage.getItem('token')) {
           this.isLoggedIn = true;
         }
-      }
-      else{
+      } else {
         this.isLoggedIn = false;
-        console.log(this.isLoggedIn)
+        // console.log(this.isLoggedIn)
       }
-      console.log(this.isLoggedIn)
-    })
-
-
+      // console.log(this.isLoggedIn)
+    });
   }
 
-  logOut(){
-    this._authService.logOut()
+  logOut() {
+    this._authService.logOut();
   }
-
 
   ngOnInit(): void {
     // console.log(localStorage.getItem('token'));
-
-
-
   }
 
-/* Add Cart Number */
-GetCartItemCount(){
-  let cartData = localStorage.getItem("cart");
-  if(cartData){
-  return this.cartItems=JSON.parse(cartData).length
-}
-}
+  /* Add Cart Number */
+  GetCartItemCount() {
+    let cartData = localStorage.getItem('cart');
+    if (cartData) {
+      return (this.cartItems = JSON.parse(cartData).length);
+    }
+  }
 
-GetWishItemCount(){
-  let wishData = localStorage.getItem("wish");
-  if(wishData){
-  return this.cartItems=JSON.parse(wishData).length
-}
-}
-/* Add Cart Number */
-
+  GetWishItemCount() {
+    let wishData = localStorage.getItem('wish');
+    if (wishData) {
+      return (this.cartItems = JSON.parse(wishData).length);
+    }
+  }
+  /* Add Cart Number */
 }

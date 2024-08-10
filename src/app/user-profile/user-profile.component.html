@@ -1,0 +1,46 @@
+<div class="profile">
+    @if(show){
+    <div class="alert">
+        Changes Saved
+    </div>
+    }
+    <h3>Welcome, {{name || "Ali Mohamed"}}</h3>
+    @if(saved){
+    <button class="save-changes" (click)="logOut()">Log out</button>
+    <p class="mt-5">Edit You Profile</p>
+    <div class=" profile-box">
+        <h4>Name</h4>
+        <input [(ngModel)]="name" type="text" placeholder="new name...">
+    </div>
+    <div class="profile-box">
+        <h4>Email addres</h4>
+        <input [(ngModel)]="email" type="email" placeholder="new Email...">
+    </div>
+    <div class="profile-box">
+        <h4>Old Password</h4>
+        <input [(ngModel)]="oldPassword" type="password" placeholder="old password...">
+    </div>
+    <div class="profile-box">
+        <h4>New Password</h4>
+        <input [(ngModel)]="newPassword" type="password" placeholder="new password...">
+    </div>
+    <div class="profile-box">
+        <h4>Reapet new password</h4>
+        <input [(ngModel)]="rePassword" type="password" placeholder="rewiter new password...">
+    </div>
+    <button class="save-changes" (click)="saveChanges()">Save Changes</button>
+    }
+    @if(!saved){
+    <button class="save-changes" (click)="logOut()">Log out</button>
+    <p class="mt-5">Edit You Profile</p>
+    <div class=" profile-box">
+        <h4>Name</h4>
+        <input [value]="newData.name" disabled type="text" placeholder="new name...">
+    </div>
+    <div class="profile-box">
+        <h4>Email addres</h4>
+        <input [value]="newData.email" disabled type="email" placeholder="new Email...">
+    </div>
+    <button class="save-changes" (click)="edit()">Edit Again</button>
+    }
+</div>

@@ -17,138 +17,158 @@ import { LoaderComponent } from '../loader/loader.component';
     BannerComponent,
     ProductCardComponent,
     LoaderComponent,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-
-export class HomeComponent implements DoCheck{
+export class HomeComponent implements DoCheck {
   products: ProductIntrface[] = [];
 
   sortedProducts: ProductIntrface[] = [];
 
   inputNameProdut: string = '';
 
-  cartProducts:any[]=[]
-  wishProducts:any[]=[]
+  cartProducts: any[] = [];
+  wishProducts: any[] = [];
   minPrice: number = 0;
   maxPrice: number = 1000;
-  rangeValue: number = 0
+  rangeValue: number = 0;
 
-  constructor(private _productsService: ProductsService){
-    _productsService.getProducts().subscribe({
+  constructor(private _productsService: ProductsService) {}
+
+  getData(num) {
+    this._productsService.getProducts().subscribe({
       next: (res) => {
         this.products = res;
-        this.sortedProducts = [...this.products]
+        if (num == 1) {
+          this.sortedProducts = [...this.products.slice(0, 10)];
+        } else if (num == 2) {
+          this.sortedProducts = [...this.products.slice(10, 21)];
+        }
       },
-      error:(err) =>{
+      error: (err) => {
         console.log(err);
       },
-      complete:() => {
-        console.log("Completed");
-
-      }
-    })
+      complete: () => {
+        console.log('Completed');
+      },
+    });
   }
-
+  ngOnInit() {
+    this.getData(1);
+  }
+  first() {
+    this.getData(1);
+  }
+  last() {
+    this.getData(2);
+  }
   // 1- filtration by dropdown
-  filterBySelection(option: string){
+  filterBySelection(option: string) {
     if (option == 'All') {
       this.sortedProducts = [...this.products];
-    }
-    else if(option == 'priceAsc'){
-      this.sortedProducts = this.products.sort((a,b) => a.price - b.price);
-    }
-    else if(option == 'priceDesc'){
-      this.sortedProducts = this.products.sort((a,b) => b.price - a.price);
-    }
-    else if(option == 'nameAsc'){
-      this.sortedProducts = this.products.sort((a,b) => a.title.localeCompare(b.title));
-    }
-    else if(option == 'nameDesc'){
-      this.sortedProducts = this.products.sort((a,b) => b.title.localeCompare(a.title));
+    } else if (option == 'priceAsc') {
+      this.sortedProducts = this.products.sort((a, b) => a.price - b.price);
+    } else if (option == 'priceDesc') {
+      this.sortedProducts = this.products.sort((a, b) => b.price - a.price);
+    } else if (option == 'nameAsc') {
+      this.sortedProducts = this.products.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+    } else if (option == 'nameDesc') {
+      this.sortedProducts = this.products.sort((a, b) =>
+        b.title.localeCompare(a.title)
+      );
     }
   }
 
-  filtrationBySelection(event: any){
+  filtrationBySelection(event: any) {
     const option = event.target.value;
     this.filterBySelection(option);
   }
 
   // 2- filtration by name
   filterByName(name: string): void {
-    this.sortedProducts = this.sortedProducts.filter(product => product.title.toLowerCase().includes(name.toLowerCase()));
+    this.sortedProducts = this.sortedProducts.filter((product) =>
+      product.title.toLowerCase().includes(name.toLowerCase())
+    );
   }
 
-  filtrationByName(event: any) : void{
+  filtrationByName(event: any): void {
     const name = event.target.value;
     if (name == '') {
-      this.sortedProducts = [... this.products]
-    }else{
+      this.sortedProducts = [...this.products];
+    } else {
       this.filterByName(name);
     }
 
-    console.log(this.sortedProducts)
+    console.log(this.sortedProducts);
   }
 
   // 2- filtration by range price
-  filterByPrice(value: number){
-    this.sortedProducts = this.sortedProducts.filter(product => product.price <= value);
+  filterByPrice(value: number) {
+    this.sortedProducts = this.sortedProducts.filter(
+      (product) => product.price <= value
+    );
   }
 
-  filtrationByPrice(event: any) : void{
+  filtrationByPrice(event: any): void {
     let value = event.target.value;
-    console.log(event.target.value)
-    this.filterByPrice(value)
+    console.log(event.target.value);
+    this.filterByPrice(value);
   }
-
 
   currentPage: number = 1;
   itemsPerPage: number = 10;
-  numberPages: number = 0
-  arrayNumberPages: number[] = []
+  numberPages: number = 0;
+  arrayNumberPages: number[] = [];
 
   ngDoCheck(): void {
-    this.showPagenubers()
+    this.showPagenubers();
   }
 
-  showPagenubers(){
+  showPagenubers() {
     this.numberPages = Math.ceil(this.products.length / this.itemsPerPage);
-    this.arrayNumberPages = Array(this.numberPages).fill(0).map((x,index) => index + 1);
-    console.log(this.arrayNumberPages,this.numberPages,this.products.length)
+    this.arrayNumberPages = Array(this.numberPages)
+      .fill(0)
+      .map((x, index) => index + 1);
+    console.log(this.arrayNumberPages, this.numberPages, this.products.length);
   }
 
-  addToCart(event:any){
-    if("cart" in localStorage) {
-      this.cartProducts = JSON.parse(localStorage.getItem("cart")!)
-      let exist = this.cartProducts.find(item => item.item.id == event.item.id)
-      if(exist) {
-        alert("Product is already in your cart")
-      }else {
-        this.cartProducts.push(event)
-        localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+  addToCart(event: any) {
+    if ('cart' in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem('cart')!);
+      let exist = this.cartProducts.find(
+        (item) => item.item.id == event.item.id
+      );
+      if (exist) {
+        alert('Product is already in your cart');
+      } else {
+        this.cartProducts.push(event);
+        localStorage.setItem('cart', JSON.stringify(this.cartProducts));
       }
     } else {
-      this.cartProducts.push(event)
-      localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+      this.cartProducts.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
     }
-
   }
 
-  addTowish(event:any){
-    if("wish" in localStorage) {
-      this.wishProducts = JSON.parse(localStorage.getItem("wish")!)
-      let existt = this.wishProducts.find(item => item.item.id == event.item.id)
-      if(existt) {
-        alert("Product is already in your wish")
-      }else {
-        this.wishProducts.push(event)
-        localStorage.setItem("wish" , JSON.stringify(this.wishProducts))
+  addTowish(event: any) {
+    if ('wish' in localStorage) {
+      this.wishProducts = JSON.parse(localStorage.getItem('wish')!);
+      let existt = this.wishProducts.find(
+        (item) => item.item.id == event.item.id
+      );
+      if (existt) {
+        alert('Product is already in your wish');
+      } else {
+        this.wishProducts.push(event);
+        localStorage.setItem('wish', JSON.stringify(this.wishProducts));
       }
     } else {
-      this.wishProducts.push(event)
-      localStorage.setItem("wish" , JSON.stringify(this.wishProducts))
+      this.wishProducts.push(event);
+      localStorage.setItem('wish', JSON.stringify(this.wishProducts));
     }
   }
 }

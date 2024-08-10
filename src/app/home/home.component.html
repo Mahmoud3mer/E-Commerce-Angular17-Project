@@ -45,13 +45,14 @@
         @if (products.length == 0) {
         <app-loader></app-loader>
         }@else {
-          <div class="d-flex flex-wrap justify-content-center">
-        @for (product of sortedProducts; track $index) {
+        <div class="d-flex flex-wrap justify-content-center">
+            @for (product of sortedProducts; track $index) {
 
-            <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)"></app-product-card>
+            <app-product-card [data]="product" (item)="addToCart($event)"
+                (itemm)="addTowish($event)"></app-product-card>
 
-        }
-      </div>
+            }
+        </div>
         }
 
     </div>
@@ -61,16 +62,22 @@
         <div class="mx-auto">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link">Previous</a>
+                    <li role="button" class="page-item">
+                        <a class="page-link" (click)="first()">Previous</a>
                     </li>
-                    @for (pageNumber of arrayNumberPages; track $index) {
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link">{{pageNumber}}</a>
-                        </li>
-                    }
-                    <li class="page-item">
-                        <a class="page-link">Next</a>
+                    <!-- @for (pageNumber of arrayNumberPages; track $index) {
+                    <li role="button" class="page-item active" aria-current="page">
+                        <a class="page-link">{{pageNumber}}</a>
+                    </li>
+                    } -->
+                    <li (click)="first()" role="button" class="page-item" aria-current="page">
+                        <a class="page-link">1</a>
+                    </li>
+                    <li (click)="last()" role="button" class="page-item" aria-current="page">
+                        <a class="page-link">2</a>
+                    </li>
+                    <li role="button" class="page-item">
+                        <a class="page-link" (click)="last()">Next</a>
                     </li>
                 </ul>
             </nav>

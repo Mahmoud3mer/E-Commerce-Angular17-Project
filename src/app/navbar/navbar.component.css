@@ -1,4 +1,4 @@
-.numCart{
+.numCart {
   background-color: brown;
   width: 20px;
   color: aliceblue;
@@ -6,6 +6,6 @@
   text-align: center;
   border-radius: 20px;
   font-size: medium;
-  margin-left:25px ;
+  margin-left: -5px;
   margin-top: -15px;
 }

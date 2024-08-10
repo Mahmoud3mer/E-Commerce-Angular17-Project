@@ -1,40 +1,42 @@
-<div class="container my-5">
+<div class="poducts">
+  <div class="container my-5">
     @if (products.length == 0) {
 
-        <app-loader></app-loader>
+    <app-loader></app-loader>
 
     }@else {
+    <div class="">
+      <h1 #show>Jewelery</h1>
+      <div class="d-flex gy-5 flex-wrap justify-content-center">
+        @for (product of products; track $index) {
+        @if (product.category == 'jewelery') {
         <div class="">
-            <h1 #show>Jewelery</h1>
-            <div class="d-flex gy-5 flex-wrap justify-content-center">
-            @for (product of products; track $index) {
-                @if (product.category == 'jewelery') {
-                    <div class="">
-                        <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)"></app-product-card>
-                      </div>
-                }
-            }
-
-          </div>
+          <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)"></app-product-card>
         </div>
+        }
+        }
 
-        <div class="container my-5">
-            <h1 #show>All Products</h1>
-            @defer (on interaction(show)) {
+      </div>
+    </div>
 
-              <div class="d-flex flex-wrap justify-content-center">
-                @for (product of products; track $index) {
-                  <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)" ></app-product-card>
-                }
-              </div>
+    <div class="container my-5">
+      <h1 #show class="text-center">All Products</h1>
+      @defer (on hover(show)) {
 
-            }
-            @loading (after 1s; minimum 2s) {
-                <h1>Loading Products</h1>
-            }
-            <!-- @placeholder {
+      <div class="d-flex flex-wrap justify-content-center">
+        @for (product of products; track $index) {
+        <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)"></app-product-card>
+        }
+      </div>
+
+      }
+      @loading (after 1s; minimum 2s) {
+      <h1>Loading Products</h1>
+      }
+      <!-- @placeholder {
                 <h1>All Products</h1>
             } -->
-        </div>
+    </div>
     }
+  </div>
 </div>

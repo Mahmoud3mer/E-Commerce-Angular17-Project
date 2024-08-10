@@ -1,0 +1,36 @@
+<div class="address">
+    <h4>your shipping address</h4>
+    <div class="shipping">
+        <input disabled type="text" value="Egypt">
+        <input disabled type="text" value="Cairo">
+        <input disabled type="text" value="Mohandiseen">
+        <input disabled type="text" value="10110">
+        <input disabled type="text" value="12 harm st">
+    </div>
+    @if(!saved){
+
+    <button (click)="addAddress()" class="add-address">Add Anthor Address</button>
+    }
+    @if(activeAdressForm){
+
+    <div class="shipping">
+        <input [(ngModel)]="countery" type="text" placeholder="Countery">
+        <input [(ngModel)]="city" type="text" placeholder="City">
+        <input [(ngModel)]="state" type="text" placeholder="Provance/State">
+        <input [(ngModel)]="zip" type="text" placeholder="Zip Code">
+        <input [(ngModel)]="full" type="text" placeholder="Full Address / Street">
+    </div>
+    <button (click)="saveAddress()" class="add-address">Save The Address</button>
+    }
+    @if(saved){
+    <h5>Ultrnative Address</h5>
+    <div class="shipping">
+        <input disabled type="text" [value]="address.countery">
+        <input disabled type="text" [value]="address.city">
+        <input disabled type="text" [value]="address.state">
+        <input disabled type="text" [value]="address.zip">
+        <input disabled type="text" [value]="address.full">
+    </div>
+    }
+
+</div>

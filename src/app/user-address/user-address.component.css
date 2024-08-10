@@ -1,0 +1,44 @@
+.address {
+    padding: 46px;
+}
+
+.address h4 {
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.shipping {
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+}
+
+@media (max-width: 768px) {
+    .shipping {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shipping input {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #878787;
+    color: rgb(174, 174, 174);
+}
+
+.add-address {
+    padding: 8px 12px;
+    margin: 24px 0 16px 0;
+    color: orangered;
+    border: 1px solid #bdbdbd;
+    background-color: #fff;
+    border-radius: 8px;
+
+}
+
+h5 {
+    margin: 15px 5px;
+    font-size: 18px;
+}

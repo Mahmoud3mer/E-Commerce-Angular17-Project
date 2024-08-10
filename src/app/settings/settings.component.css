@@ -1,0 +1,34 @@
+.setting {
+    background-color: #f2f2f2;
+    min-height: 80vh;
+}
+
+.setting nav {
+    padding: 12px 24px;
+    border-radius: 6px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.setting a {
+    position: relative;
+    display: inline-block;
+    padding: 4px 20px;
+    border-radius: 4px;
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.setting a.active-link {
+    color: orangered;
+}
+
+.setting a.active-link::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 2px;
+    bottom: -13px;
+    left: 0;
+    background-color: orangered;
+}
