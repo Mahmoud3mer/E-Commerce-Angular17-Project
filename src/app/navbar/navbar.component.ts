@@ -63,6 +63,13 @@ GetCartItemCount(){
   return this.cartItems=JSON.parse(cartData).length
 }
 }
+
+GetWishItemCount(){
+  let wishData = localStorage.getItem("wish");
+  if(wishData){
+  return this.cartItems=JSON.parse(wishData).length
+}
+}
 /* Add Cart Number */
 
 }

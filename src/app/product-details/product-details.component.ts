@@ -8,7 +8,7 @@ import { ProductsService } from '../products.service';
   standalone: true,
   imports: [],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.css' 
+  styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit {
   productId!: number;

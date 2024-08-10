@@ -2,6 +2,7 @@ import { Component, EventEmitter, output, Output } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductsComponent } from '../products/products.component';
+import { CartApiService } from '../services/cart-api.service';
 /* import { ElectronicService } from '../electronic.service'; */
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,9 @@ export class CartComponent {
 @Output() itemn = new EventEmitter;
   total:any=0
   x:any=0
-  constructor(){
+  success :boolean=false
+
+  constructor(private service:CartApiService){
 
     this.getCartProducts()
 /*     let x = 4.59;
@@ -39,6 +42,9 @@ export class CartComponent {
   }
   minsAmount(index:number){
     this.cartProducts[index].quantity--;
+    if(this.cartProducts[index].quantity<=1){
+      this.cartProducts[index].quantity=1
+    }
     this.getCartTotal();
     localStorage.setItem("cart" , JSON.stringify(this.cartProducts));
   }
@@ -63,10 +69,25 @@ export class CartComponent {
     }
   }
 
+/*start Add Card To backend */
+  addCartApi(){
+    let products =this.cartProducts.map(item=>{
+     return {productId:item.item.id,quantity:item.quantity}
+    })
+    let Model={
+      userID:5,
+      date:new Date(),
+      products:products
+  }
 
-/*  num(){
-    return this.cartProducts.length
-  } */
+  this.service.creatNewCart(Model).subscribe(res=>{
+    this.success=true
+  })
+
+  console.log(Model);
+
+  }
+/* end Card To backend */
 
 }
 

@@ -31,7 +31,7 @@ export class HomeComponent implements DoCheck{
   inputNameProdut: string = '';
 
   cartProducts:any[]=[]
-
+  wishProducts:any[]=[]
   minPrice: number = 0;
   maxPrice: number = 1000;
   rangeValue: number = 0
@@ -134,5 +134,21 @@ export class HomeComponent implements DoCheck{
       localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
     }
 
+  }
+
+  addTowish(event:any){
+    if("wish" in localStorage) {
+      this.wishProducts = JSON.parse(localStorage.getItem("wish")!)
+      let existt = this.wishProducts.find(item => item.item.id == event.item.id)
+      if(existt) {
+        alert("Product is already in your wish")
+      }else {
+        this.wishProducts.push(event)
+        localStorage.setItem("wish" , JSON.stringify(this.wishProducts))
+      }
+    } else {
+      this.wishProducts.push(event)
+      localStorage.setItem("wish" , JSON.stringify(this.wishProducts))
+    }
   }
 }

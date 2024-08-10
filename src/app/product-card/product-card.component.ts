@@ -1,9 +1,9 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, OnInit } from '@angular/core';
 import { ProductIntrface } from '../product-intrface';
 import { Router } from '@angular/router';
-import { EventEmitterAsyncResource } from 'events';
+
 import { FormsModule } from '@angular/forms';
-import { CartComponent } from '../cart/cart.component';
+
 
 
 @Component({
@@ -23,13 +23,23 @@ export class ProductCardComponent {
   /* Cart */
 /*   @Input() inp : any={}; */
   @Output() item = new EventEmitter;
-  addButton:boolean=false;
-  amount:number=0;
+  @Output() itemm = new EventEmitter;
 
+  addButton:boolean=false;
+  addButtonw:boolean=true;
+  addButtonred:boolean=true;
+
+  amount:number=0;
+  amountt:number=0;
   goToProductDetails(){
     this.router.navigate(['/singlproduct', this.data.id]);
   }
+  /* Cart */
   add(){
     this.item.emit({item:this.data,quantity:this.amount})
   }
+  addd(){
+    this.itemm.emit({item:this.data,quantity:this.amountt+1})
+  }
+  /* Cart */
 }

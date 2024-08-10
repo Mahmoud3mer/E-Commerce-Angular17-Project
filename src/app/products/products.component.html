@@ -10,10 +10,11 @@
             @for (product of products; track $index) {
                 @if (product.category == 'jewelery') {
                     <div class="">
-                        <app-product-card [data]="product" (item)="addToCart($event) "></app-product-card>
-                    </div>
+                        <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)"></app-product-card>
+                      </div>
                 }
             }
+
           </div>
         </div>
 
@@ -23,9 +24,7 @@
 
               <div class="d-flex flex-wrap justify-content-center">
                 @for (product of products; track $index) {
-
-                        <app-product-card [data]="product" (item)="addToCart($event)" ></app-product-card>
-
+                  <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)" ></app-product-card>
                 }
               </div>
 

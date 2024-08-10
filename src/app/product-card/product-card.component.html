@@ -20,7 +20,7 @@
     </div>
 </div> -->
 
-<div class="item border border-2 border-dark rounded-2 overflow-hidden position-relative m-3 p-2"style="width: 270px;height: 380px;"  >
+<div class="item border border-2 border-dark rounded-2 overflow-hidden position-relative m-3 p-2"style="width: 270px;height: 390px;"  >
   <img [src]="data.image" class="card-img-top "  alt="..." (click)="goToProductDetails()" style="width: 250px;height: 200px;">
   <hr>
 <div class="p-3">
@@ -31,13 +31,21 @@
       }
       @if(addButton==true){
         <div class="w-75 d-flex">
-          <input type="number" class="form-control border-2 " [(ngModel)]="amount">
-          <button class="btn btn-danger ms-2 mt-2" (click)="add();addButton=false">Add</button>
+          <input type="number" class="form-control border-2 "  placeholder="Enter Num" [(ngModel)]="amount" min="1" >
+          <button class="btn btn-danger ms-2 mt-2" (click)="add();addButton=false;">Add</button>
         </div>
+
       }
+
 </div>
 
-  <i class="fa-solid fa-heart icon position-absolute fs-3 bottom-0 end-0 mb-2 me-2" title="favorite product"></i>
 
+  @if(addButtonw==true){
+    <i class="fa-solid fa-heart icon position-absolute fs-3 bottom-0 end-0 mb-2 me-2" (click)="addd();addButtonw=false" title="favorite product"></i>
+  }
+  @if(addButtonw==false){
+      <i class="fa-solid fa-heart icon position-absolute fs-3 bottom-0 end-0 mb-2 me-2 ss" style="color: brown;" (click)="addd();addButtonw=true" title="favorite product"></i>
+
+  }
 </div>
 

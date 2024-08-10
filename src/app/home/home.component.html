@@ -48,7 +48,7 @@
           <div class="d-flex flex-wrap justify-content-center">
         @for (product of sortedProducts; track $index) {
 
-            <app-product-card [data]="product" (item)="addToCart($event)"></app-product-card>
+            <app-product-card [data]="product" (item)="addToCart($event)" (itemm)="addTowish($event)"></app-product-card>
 
         }
       </div>

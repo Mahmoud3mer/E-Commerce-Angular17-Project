@@ -3,8 +3,8 @@
   <h1 class="text-danger m-3">Shopping Cart</h1>
   <hr>
 <div class="headCart">
-  <p class="lead">You have <label class="text-danger "> {{cartProducts.length}}</label> item in your cart</p>
-  <span class="text-danger card-header" (click)="clearCart()">Clear Shopping Cart</span>
+  <p class="lead">You have <label class="text-danger "> {{wishProducts.length}}</label> item in your WhishList</p>
+  <span class="text-danger card-header" (click)="clearCart()">Clear WhishList Cart</span>
 </div>
   <table class="table table-striped">
       <thead>
@@ -18,7 +18,7 @@
           </tr>
       </thead>
       <tbody>
-        @for (item of cartProducts; track $index;) {
+        @for (item of wishProducts; track $index;) {
           <tr >
               <td><img src="{{item.item.image}}" alt=""></td>
               <td>{{item.item.title}}</td>
@@ -44,13 +44,8 @@
               <th></th>
               <th></th>
               <th class="total">Total : {{total}} <span class="text-success">$</span> </th>
-              <th><button class="btn btn-success" (click)="addCartApi()" >Order Now</button></th>
           </tr>
       </tfoot>
   </table>
 
 </div>
-
-@if(success==true){
-  <div class="alert alert-success" role="alert" ><strong>Well done!</strong> Your Order is Successfully Send</div>
-}

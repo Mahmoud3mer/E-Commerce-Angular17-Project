@@ -9,6 +9,7 @@ import { ProductsComponent } from './products/products.component';
 import { authGuard } from './auth.guard';
 import { CartComponent } from './cart/cart.component';
 import { NgModule } from '@angular/core';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 export const routes: Routes = [
@@ -22,6 +23,8 @@ export const routes: Routes = [
     {path: "register" , component: RegisterComponent},
     {path: "login" , component: LoginComponent},
     { path: 'cart', component: CartComponent },
+    { path: 'Wishlist', component: WishlistComponent },
+
     {path: "**" , component: NotFoundPageComponent}
 ];
 

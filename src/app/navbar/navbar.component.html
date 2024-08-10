@@ -2,9 +2,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-info">
         <div class="container">
-            <div class="">
-                <a class="navbar-brand" href="#"><img [src] = "logoImgUrl" alt="" [style.width]= "'40px'"></a>
-            </div>
+          <li class="nav-item fs-5 m-2 d-flex align-items-center">
+            <a class="nav-link active bg-dark text-white rounded-4 p-2" aria-current="page" routerLink='home' routerLinkActive="bg-primary">BL7 Souq</a>
+        </li>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -13,28 +13,27 @@
                 <ul class="navbar-nav">
                     <!-- @if (isLoggedIn === true) { -->
                         <li class="nav-item fs-5 pe-2 d-flex align-items-center">
-                            <a class="nav-link active" aria-current="page" routerLink='home' routerLinkActive="bg-primary">Home</a>
+                            <a class="nav-link active rounded-4" aria-current="page" routerLink='home' routerLinkActive="bg-primary" >Home</a>
                         </li>
                         <li class="nav-item fs-5 pe-2 d-flex align-items-center">
-                            <a class="nav-link" routerLink='products' routerLinkActive="bg-primary">Products</a>
+                            <a class="nav-link rounded-4" routerLink='products' routerLinkActive="bg-primary">Products</a>
                         </li>
 
                         <li class="nav-item fs-5 pe-2 d-flex align-items-center">
-                          <a class="nav-link" >WishList </a>
-                          <i  class="fa-regular fa-heart"></i>
-                          <div class="sc-ce86c11a-3 hxgeim"></div>
+                          <a class="nav-link rounded-4" routerLink="Wishlist" routerLinkActive="bg-primary" >WishList <span class="numCart">{{GetWishItemCount()}}</span> </a>
+                          <i  class="fa-regular fa-heart  fs-4"></i>
                         </li>
                         <li class="nav-item fs-5 pe-2 d-flex align-items-center">
-                          <a class="nav-link" routerLink="cart" routerLinkActive="bg-primary">Cart <span class="numCart">{{GetCartItemCount()}}</span></a>
+                          <a class="nav-link rounded-4" routerLink="cart" routerLinkActive="bg-primary">Cart <span class="numCart">{{GetCartItemCount()}}</span></a>
                           <i class="fa-solid fa-cart-shopping fs-4" ></i>
                         </li>
-                        <li class="nav-item fs-5 pe-2 d-flex align-items-center">
-                          <a class="nav-link" routerLink='settings' routerLinkActive="bg-primary">Settings</a>
+                        <li class="nav-item pe-2 d-flex align-items-center">
+                          <a class="nav-link rounded-4" routerLink='settings' routerLinkActive="bg-primary">Settings</a>
                           <i class="fa-solid fa-gear"></i>
                         </li>
                         <li class="nav-item fs-5 pe-2 d-flex align-items-center">
                             <button class="nav-link" (click)="logOut()">Logout</button>
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket rounded-4"></i>
                         </li>
                    <!--  }@else { -->
 

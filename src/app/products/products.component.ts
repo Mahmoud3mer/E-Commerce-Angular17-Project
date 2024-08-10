@@ -4,6 +4,8 @@ import { ProductIntrface } from '../product-intrface';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { Subscription } from 'rxjs';
+import { style } from '@angular/animations';
+import { AlertComponent, AlertModule } from '@coreui/angular';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [
     ProductCardComponent,
-    LoaderComponent
+    LoaderComponent,AlertModule,AlertComponent
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
@@ -21,6 +23,8 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
   products: ProductIntrface[] = [];
   cartProducts:any[]=[]
+  wishProducts:any[]=[]
+  alertcart:boolean=true;
   x: Subscription = new Subscription();
   constructor(private _productsService: ProductsService){
 
@@ -58,7 +62,8 @@ ngOnInit(): void {
       this.cartProducts = JSON.parse(localStorage.getItem("cart")!)
       let exist = this.cartProducts.find(item => item.item.id == event.item.id)
       if(exist) {
-        alert("Product is already in your cart")
+        alert("Product is already in your cart");
+
       }else {
         this.cartProducts.push(event)
         localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
@@ -66,6 +71,24 @@ ngOnInit(): void {
     } else {
       this.cartProducts.push(event)
       localStorage.setItem("cart" , JSON.stringify(this.cartProducts))
+
+    }
+
+  }
+
+  addTowish(event:any){
+    if("wish" in localStorage) {
+      this.wishProducts = JSON.parse(localStorage.getItem("wish")!)
+      let existt = this.wishProducts.find(item => item.item.id == event.item.id)
+      if(existt) {
+        alert("Product is already in your wish")
+      }else {
+        this.wishProducts.push(event)
+        localStorage.setItem("wish" , JSON.stringify(this.wishProducts))
+      }
+    } else {
+      this.wishProducts.push(event)
+      localStorage.setItem("wish" , JSON.stringify(this.wishProducts))
     }
   }
 
